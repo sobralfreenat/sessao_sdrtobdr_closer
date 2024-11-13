@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Metodologia de Atendimento</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            background-color: #f4f4f9;
+        }
+        h1, h2 {
+            color: #333;
+        }
+        form {
+            background: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            margin-bottom: 20px;
+        }
+        .form-group {
+            margin-bottom: 15px;
+        }
+        label {
+            display: block;
+            margin-bottom: 5px;
+        }
+        input[type="text"], input[type="number"], input[type="email"] {
+            width: 100%;
+            padding: 8px;
+            box-sizing: border-box;
+        }
+        button {
+            padding: 10px 15px;
+            background-color: #007bff;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            margin-right: 10px;
+        }
+        button:hover {
+            background-color: #0056b3;
+        }
+        .result {
+            font-weight: bold;
+            color: #007bff;
+        }
+    </style>
+</head>
+<body>
+    <h1>Metodologia de Atendimento</h1>
+    <form id="metodologiaForm">
+        <!-- 1. Informações da Empresa -->
+        <h2>1. Informações da Empresa</h2>
+        <div class="form-group">
+            <label for="nomeEmpresa">Nome da Empresa:</label>
+            <input type="text" id="nomeEmpresa" name="nomeEmpresa" placeholder="Informe o nome da empresa">
+        </div>
+        <div class="form-group">
+            <label for="email">E-mail:</label>
+            <input type="email" id="email" name="email" placeholder="Informe o e-mail">
+        </div>
+        <div class="form-group">
+            <label for="cnpj">CNPJ:</label>
+            <input type="text" id="cnpj" name="cnpj" placeholder="Informe o CNPJ">
+        </div>
+        <button type="button" class="button" onclick="abrirOuFocarJanela('https://b2bleads.com.br/resultado?page=1&situacao=Ativa&cnaeSecundario=1&tipoDados=lista', 'janela1')">Link Informações da Empresa</button>
+
+        <!-- 2. Introdução ao Valor -->
+        <h2>2. Introdução ao Valor</h2>
+        <div class="form-group">
+            <label for="valorInicial">Valor Inicial (R$):</label>
+            <input type="number" id="valorInicial" name="valorInicial" value="600000" oninput="calcularValores()">
+        </div>
+        <div class="form-group">
+            <label for="periodoMeses">Período (meses):</label>
+            <input type="number" id="periodoMeses" name="periodoMeses" value="12" oninput="calcularValores()">
+        </div>
+        <div class="form-group">
+            <label>Valor Mensal Necessário (R$):</label>
+            <span id="valorMensal" class="result">R$ 50.000,00</span>
+        </div>
+        <button type="button" class="button" onclick="abrirOuFocarJanela('https://okcalc.com/pt/', 'janela2')">Link Introdução ao Valor</button>
+        
+        <!-- 3. Divisão do Valor -->
+        <h2>3. Divisão do Valor</h2>
+        <div class="form-group">
+            <label for="ticketMedio">Ticket Médio (R$):</label>
+            <input type="number" id="ticketMedio" name="ticketMedio" value="3200" oninput="calcularVendasNecessarias()">
+        </div>
+        <div class="form-group">
+            <label>Vendas Necessárias por Mês:</label>
+            <span id="vendasNecessarias" class="result">16</span>
+        </div>
+        <div class="form-group">
+            <label for="capacidadeAtendimento">Capacidade de Atendimento Mensal:</label>
+            <input type="number" id="capacidadeAtendimento" name="capacidadeAtendimento" value="9" oninput="calcularVendasNecessarias()">
+        </div>
+        <div class="form-group">
+            <label>Ajuste Necessário:</label>
+            <span id="ajusteNecessario" class="result">7</span>
+        </div>
+        <button type="button" class="button" onclick="abrirOuFocarJanela('https://sobralfreenat.github.io/TicketMedio-Calc/', 'janela3')">Link Divisão do Valor</button>
+
+        <!-- 4. Capilaridade Territorial -->
+        <h2>4. Capilaridade Territorial</h2>
+        <div class="form-group">
+            <label for="capilaridadeTerritorial">Número de Regiões Atendidas:</label>
+            <input type="number" id="capilaridadeTerritorial" name="capilaridadeTerritorial" value="10" oninput="calcularEscala()">
+        </div>
+        <div class="form-group">
+            <label>Escala Potencial:</label>
+            <span id="escalaPotencial" class="result">160</span>
+        </div>
+        <button type="button" class="button" onclick="abrirOuFocarJanela('https://sobralfreenat.github.io/mapa150_sp-106_mg/', 'janela4')">Link Capilaridade Territorial</button>
+
+        <!-- 5. Ponto-Chave da Metodologia -->
+        <h2>5. Ponto-Chave da Metodologia</h2>
+        <p>Foco no Atendimento: Atender, no máximo, 21 clientes recorrentes mensalmente.</p>
+        <div class="form-group">
+            <label for="modeloAssessoria">Modelo de Assessoria Consultiva:</label>
+            <input type="text" id="modeloAssessoria" name="modeloAssessoria" value="Assessoria Consultiva" readonly>
+        </div>
+        <button type="button" class="button" onclick="abrirOuFocarJanela('https://freenat-doc.systeme.io/blog-assessoria-digital/nc-tm-ml-calc', 'janela5')">Link Ponto-Chave</button>
+
+        <!-- 6. Plataformas e Conteúdo -->
+        <h2>6. Plataformas e Conteúdo</h2>
+        <div class="form-group">
+            <label for="acessoConteudo">Acesso a Conteúdo:</label>
+            <input type="text" id="acessoConteudo" name="acessoConteudo" value="Whitelabel, autoral, IA, combinados">
+        </div>
+        <div class="form-group">
+            <label for="trilhasDesenvolvimento">Trilhas de Desenvolvimento:</label>
+            <input type="text" id="trilhasDesenvolvimento" name="trilhasDesenvolvimento" value="Conforme desafio do cliente">
+        </div>
+        <button type="button" class="button" onclick="abrirOuFocarJanela('https://freenat-doc.systeme.io/blog-assessoria-digital/sie-fnw-fwc', 'janela6')">Link Plataformas e Conteúdo</button>
+
+        <!-- 7. Benefícios da Metodologia -->
+        <h2>7. Benefícios da Metodologia</h2>
+        <div class="form-group">
+            <label for="desenvolvimentoContinuo">Desenvolvimento Contínuo:</label>
+            <input type="text" id="desenvolvimentoContinuo" name="desenvolvimentoContinuo" value="Gera LTV com receita previsível e crescimento com recorrência e escala">
+        </div>
+        <div class="form-group">
+            <label for="valorAgregado">Valor Agregado:</label>
+            <input type="text" id="valorAgregado" name="valorAgregado" value="Diferencial na concorrência, assessoria acompanhada">
+        </div>
+        <button type="button" class="button" onclick="abrirOuFocarJanela('https://sobralfreenat.github.io/Simul-Crescim-Clientes-base-tempo/', 'janela7')">Link Benefícios</button>
+
+        <!-- 8. Resposta ao Questionamento sobre Crescimento -->
+        <h2>8. Resposta ao Questionamento sobre Crescimento</h2>
+        <div class="form-group">
+            <label for="segmentacaoClientes">Segmentação dos Clientes:</label>
+            <input type="text" id="segmentacaoClientes" name="segmentacaoClientes" value="Verificação de clientes que se beneficiam de acesso a conteúdo">
+        </div>
+        <div class="form-group">
+            <label for="beneficiosEstrategia">Benefícios da Estratégia:</label>
+            <input type="text" id="beneficiosEstrategia" name="beneficiosEstrategia" value="Aumento de 10x faturamento, receita e lucro sem aumentar estrutura">
+        </div>
+        <button type="button" class="button" onclick="abrirOuFocarJanela('https://sobralfreenat.github.io/indice_estrategico/', 'janela8')">Link Resposta ao Crescimento</button>
+
+        <!-- 9. Encerramento da Apresentação -->
+        <h2>9. Encerramento da Apresentação</h2>
+        <div class="form-group">
+            <label for="reforcoEstrategia">Reforço da Estratégia:</label>
+            <input type="text" id="reforcoEstrategia" name="reforcoEstrategia" value="Provimento de informações precisas para definição de objetivos, métricas e metas">
+        </div>
+        <button type="button" class="button" onclick="abrirOuFocarJanela('https://sobralfreenat.github.io/indice_estrategico/', 'janela9')">Link Encerramento</button>
+
+        <button type="button" onclick="saveData()">Salvar Dados</button>
+        <button type="button" onclick="loadData()">Carregar Dados</button>
+    </form>
+
+    <script>
+        const janelas = {};
+
+        function formatarMoeda(valor) {
+            return new Intl.NumberFormat('pt-BR', { style: 'currency', currency: 'BRL' }).format(valor);
+        }
+
+        function calcularValores() {
+            const valorInicial = parseFloat(document.getElementById('valorInicial').value) || 0;
+            const periodoMeses = parseFloat(document.getElementById('periodoMeses').value) || 1;
+            const valorMensal = valorInicial / periodoMeses;
+            document.getElementById('valorMensal').textContent = formatarMoeda(valorMensal);
+            calcularVendasNecessarias();
+        }
+
+        function calcularVendasNecessarias() {
+            const valorMensal = parseFloat(document.getElementById('valorMensal').textContent.replace(/[^\d,-]/g, '').replace(',', '.')) || 0;
+            const ticketMedio = parseFloat(document.getElementById('ticketMedio').value) || 0;
+            const capacidadeAtendimento = parseFloat(document.getElementById('capacidadeAtendimento').value) || 0;
+
+            const vendasNecessarias = ticketMedio > 0 ? Math.ceil(valorMensal / ticketMedio) : 0;
+            const ajusteNecessario = capacidadeAtendimento > 0 ? Math.max(0, vendasNecessarias - capacidadeAtendimento) : vendasNecessarias;
+
+            document.getElementById('vendasNecessarias').textContent = vendasNecessarias;
+            document.getElementById('ajusteNecessario').textContent = ajusteNecessario;
+            calcularEscala();
+        }
+
+        function calcularEscala() {
+            const vendasNecessarias = parseFloat(document.getElementById('vendasNecessarias').textContent) || 0;
+            const capilaridadeTerritorial = parseFloat(document.getElementById('capilaridadeTerritorial').value) || 1;
+            const escalaPotencial = vendasNecessarias * capilaridadeTerritorial;
+            document.getElementById('escalaPotencial').textContent = escalaPotencial;
+        }
+
+        function abrirOuFocarJanela(url, nomeJanela) {
+            if (!janelas[nomeJanela] || janelas[nomeJanela].closed) {
+                janelas[nomeJanela] = window.open(url, nomeJanela, 'width=400,height=600');
+            } else {
+                janelas[nomeJanela].focus();
+            }
+        }
+
+        function saveData() {
+            const formElements = document.getElementById('metodologiaForm').elements;
+            const data = {};
+            for (let i = 0; i < formElements.length; i++) {
+                if (formElements[i].type !== "button") {
+                    data[formElements[i].name] = formElements[i].value;
+                }
+            }
+
+            const empresa = data['nomeEmpresa'] || 'empresa';
+            const desafio = 'metodologia-atendimento';
+
+            const blob = new Blob([JSON.stringify(data, null, 2)], { type: 'application/json' });
+            const url = URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = `${empresa}-${desafio}.json`;
+            a.click();
+            URL.revokeObjectURL(url);
+        }
+
+        function loadData() {
+            const input = document.createElement('input');
+            input.type = 'file';
+            input.accept = '.json';
+            input.onchange = event => {
+                const file = event.target.files[0];
+                if (file) {
+                    const reader = new FileReader();
+                    reader.onload = e => {
+                        const data = JSON.parse(e.target.result);
+                        const formElements = document.getElementById('metodologiaForm').elements;
+                        for (let i = 0; i < formElements.length; i++) {
+                            if (formElements[i].type !== "button" && data[formElements[i].name]) {
+                                formElements[i].value = data[formElements[i].name];
+                            }
+                        }
+                        calcularValores();
+                    };
+                    reader.readAsText(file);
+                }
+            };
+            input.click();
+        }
+
+        // Inicializa os cálculos
+        calcularValores();
+    </script>
+</body>
+</html>
